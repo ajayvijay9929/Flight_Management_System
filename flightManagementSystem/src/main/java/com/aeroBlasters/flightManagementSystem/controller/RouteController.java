@@ -56,7 +56,7 @@ public class RouteController {
 		Route route2 = routeService.createReturnRoute(route1);
 		routeDao.save(route1);
 		routeDao.save(route2);
-		return new ModelAndView("index_2");
+		return new ModelAndView("index");
 	}
 	
 	@GetMapping("/routes")

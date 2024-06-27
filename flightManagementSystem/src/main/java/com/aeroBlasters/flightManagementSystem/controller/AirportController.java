@@ -41,7 +41,7 @@ public class AirportController {
 		
 		airportDao.addAirport(airport);
 		//----------------------------------------
-		return new ModelAndView("index_2");
+		return new ModelAndView("index");
 		//----------------------------------------
 	}
 	
