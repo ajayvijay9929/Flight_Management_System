@@ -10,4 +10,3 @@ public interface AirportDao {
    public List<String> findAllAirportCodes();
    public String findAirportCodeByLocation(String airportLocation);
 }
-//AirportRepository.findAirportCodeByLocation(String airportLocation) 

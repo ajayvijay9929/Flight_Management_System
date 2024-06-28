@@ -3,22 +3,26 @@ package com.aeroBlasters.flightManagementSystem.controller;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.aeroBlasters.flightManagementSystem.bean.Airport;
 import com.aeroBlasters.flightManagementSystem.bean.Flight;
 import com.aeroBlasters.flightManagementSystem.bean.Route;
 import com.aeroBlasters.flightManagementSystem.dao.AirportDao;
 import com.aeroBlasters.flightManagementSystem.dao.RouteDao;
+import com.aeroBlasters.flightManagementSystem.exception.RouteException;
 import com.aeroBlasters.flightManagementSystem.service.FlightService;
 import com.aeroBlasters.flightManagementSystem.service.RouteService;
 import com.aeroBlasters.flightManagementSystem.dao.FlightDao;
 
-
-
+@ControllerAdvice
 @RestController
 public class RouteController {
 
@@ -94,5 +98,35 @@ public class RouteController {
 		return mv;
 	}
 	
+	@GetMapping("/searchflight")
+	public ModelAndView showRouteSelectPage() {
+		List<Airport> airportList = airportDao.showAllAirports();
+		ModelAndView mv = new ModelAndView("routeSelectPage");
+		mv.addObject("airportList", airportList);
+		return mv;
+	}
 	
+	@PostMapping("/searchflight")
+	public ModelAndView showRouteFlightpage(@RequestParam("from_city") String fromCity,@RequestParam("to_city") String toCity) {
+		String fromAirport = airportDao.findAirportCodeByLocation(fromCity);
+		String toAirport = airportDao.findAirportCodeByLocation(toCity);
+		if (fromAirport.equalsIgnoreCase(toAirport))
+			throw new RouteException();
+		Route route = routeDao.findRouteBySourceAndDestination(fromAirport, toAirport);
+		List<Flight> flightList = flightDao.findFlightsByRouteId(route.getRouteId());
+		ModelAndView mv = new ModelAndView("routeFlightShowPage");
+		mv.addObject("flightList",flightList);
+		mv.addObject("fromAirport",fromCity);
+		mv.addObject("toAirport",toCity);
+		mv.addObject("fair",route.getFair());
+		return mv;
+	}
+	
+	@ExceptionHandler(value = RouteException.class)
+	public ModelAndView handlingRouteException(RouteException exception) {
+		String msg = "Source And Destination City Can Not Be Same !!!";
+		ModelAndView mv = new ModelAndView("routeErrorPage");
+		mv.addObject("errorMessage",msg);
+		return mv;
+	}
 }

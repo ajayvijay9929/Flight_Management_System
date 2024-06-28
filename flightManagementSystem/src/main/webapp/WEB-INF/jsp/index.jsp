@@ -98,6 +98,13 @@ WELCOME TO FLIGHT MANAGEMENT SYSTEM</u>
             <a href="/flights">All Flights</a>
         </div>
         </div>
+        
+ <div class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">Flight Booking</a>
+        <div class="dropdown-content">
+            <a href="/searchflight">Flight Search</a>
+        </div>  
+        </div>
       
  <div class="dropdown">
         <a href="/loginpage">Logout</a>
