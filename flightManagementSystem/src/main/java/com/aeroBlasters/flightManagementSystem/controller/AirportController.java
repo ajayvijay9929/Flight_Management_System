@@ -10,13 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import com.aeroBlasters.flightManagementSystem.bean.Airport;
 import com.aeroBlasters.flightManagementSystem.dao.AirportDao;
-import com.aeroBlasters.flightManagementSystem.dao.RouteDao;
 
 @RestController
 public class AirportController {
-	
-	@Autowired
-	private RouteDao routeDao;
 	
 	@Autowired
 	private AirportDao airportDao;
@@ -26,23 +22,20 @@ public class AirportController {
 	public ModelAndView showAirportEntryPage() {
 		Airport airport = new Airport();
 		ModelAndView mv=new ModelAndView("airportAdd");
+		System.out.print("1");
 		mv.addObject("airport_data", airport);
 		return mv;	 
-	//	return new ModelAndView("AirportAddition", "airport_data", new Airport());
 	}
 	
 	
 	@PostMapping("/airport")
 	public ModelAndView saveAirport(@ModelAttribute("airport_data") Airport airport) {
-		String str =airport .getAirportCode().toUpperCase();		
+		String str = airport.getAirportCode().toUpperCase();
 		airport.setAirportCode(str);
-		String stg =airport .getAirportLocation().toUpperCase();		
+		String stg =airport.getAirportLocation().toUpperCase();		
 		airport.setAirportLocation(stg);
-		
 		airportDao.addAirport(airport);
-		//----------------------------------------
 		return new ModelAndView("index");
-		//----------------------------------------
 	}
 	
 	@GetMapping("/airports")
@@ -69,6 +62,5 @@ public class AirportController {
 		return mv;
 	}
 	
-
 }
 
