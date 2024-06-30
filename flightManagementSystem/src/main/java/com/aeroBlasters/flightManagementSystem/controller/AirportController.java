@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.aeroBlasters.flightManagementSystem.bean.Airport;
 import com.aeroBlasters.flightManagementSystem.dao.AirportDao;
 
+
 @RestController
 public class AirportController {
 	
