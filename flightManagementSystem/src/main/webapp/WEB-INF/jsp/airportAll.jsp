@@ -12,7 +12,6 @@
         body {
             font-family: Arial, sans-serif;
             background-image: url('/images/flights.jpg');
-            
             background-color: #f8f9fa;
         }
         .form-container {
@@ -62,7 +61,7 @@
                                 <td>${airport.airportCode}</td>
                                 <td>${airport.airportLocation}</td>
                                 <td><a href="/airport/${airport.airportCode}" class="btn btn-info">Enquire</a></td>
-                            </tr>  
+                            </tr>
                         </c:forEach>
                     </tbody>
                 </table>

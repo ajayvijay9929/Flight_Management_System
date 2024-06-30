@@ -51,7 +51,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <a href="/index" class="home-link btn btn-primary">Back to Home</a>
+                <a href="/airports" class="home-link btn btn-primary">Back to Home</a>
             </div>
         </div>
     </div>

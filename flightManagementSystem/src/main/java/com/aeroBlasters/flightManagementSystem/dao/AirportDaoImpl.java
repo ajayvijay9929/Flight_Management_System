@@ -22,22 +22,34 @@ public class AirportDaoImpl implements AirportDao {
 		return repository.findAll();
 	}
 
-	@Override
-	public Airport showAirport(String id) {
-		// TODO Auto-generated method stub
-		return repository.findById(id).get();
-	}
-	 @Override
+
+		 @Override
 	 public List<String> findAllAirportCodes(){
 			// TODO Auto-generated method stub
 			return repository.findAllAirportCodes();
 	    }
 
 	@Override
+		public List<String> findAllAirportLocations() {
+			return repository.findAllAirportLocations();
+		}
+	 
+	@Override
+	public Airport findAirportById(String id) {
+	    // Handle Optional to avoid NoSuchElementException
+	    return repository.findById(id).orElse(null);
+	}
+
+	@Override
 	public String findAirportCodeByLocation(String airportLocation) {
 		// TODO Auto-generated method stub
 		return repository.findAirportCodeByLocation(airportLocation);
 	}
- 
 	
 }
+
+
+
+
+	
+

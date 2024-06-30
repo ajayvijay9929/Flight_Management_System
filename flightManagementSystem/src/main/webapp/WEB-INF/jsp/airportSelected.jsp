@@ -53,7 +53,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
-                <a href="" class="home-link btn btn-secondary">Back to Home</a>
+                <a href="index" class="home-link btn btn-secondary">Back to Home</a>
             </div>
         </div>
     </div>

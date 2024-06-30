@@ -98,7 +98,7 @@ public class RouteController {
 		return mv;
 	}
 	
-	@GetMapping("/searchflight")
+/*	@GetMapping("/searchflight")
 	public ModelAndView showRouteSelectPage() {
 		List<Airport> airportList = airportDao.showAllAirports();
 		ModelAndView mv = new ModelAndView("routeSelectPage");
@@ -120,7 +120,7 @@ public class RouteController {
 		mv.addObject("toAirport",toCity);
 		mv.addObject("fair",route.getFair());
 		return mv;
-	}
+	}*/
 	
 	@ExceptionHandler(value = RouteException.class)
 	public ModelAndView handlingRouteException(RouteException exception) {
