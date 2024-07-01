@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Airport Form</title>
+    <title>Flight Page</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -40,21 +40,21 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 form-container">
-                <h3 class="text-center form-title">Airport Form</h3>
-                <form:form id="airportForm" action="/airport" method="post" modelAttribute="airport_data">
+                <h3 class="text-center form-title">Route Form</h3>
+                <form id="flightForm" action="/searchflight" method="post">
                     <div class="form-group">
-                        <label for="airportLocation">Enter Airport City:</label>
-                        <form:input type="text" class="form-control" id="airportLocation" path="airportLocation" required="true"/>
+                        <label for="fromCity">Enter Source Airport:</label>
+                        <input type="text" class="form-control" id="fromCity" name="from_city" required>
                     </div>
                     <div class="form-group">
-                        <label for="airportCode">Enter Airport Code:</label>
-                        <form:input type="text" class="form-control" id="airportCode" path="airportCode" required="true"/>
+                        <label for="toCity">Enter Destination Airport:</label>
+                        <input type="text" class="form-control" id="toCity" name="to_city" required>
                     </div>
+        
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary btn-custom">Submit</button>
-                        <button type="reset" class="btn btn-secondary btn-custom">Reset</button>
                     </div>
-                </form:form>
+                </form>
                 <a href="index" class="home-link">Back to Home</a>
             </div>
         </div>

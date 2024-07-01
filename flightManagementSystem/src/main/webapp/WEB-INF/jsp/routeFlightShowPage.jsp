@@ -1,73 +1,69 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>All Airports</title>
+    <title>Flight Details</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
             background-image: url('/images/flights.jpg');
-            
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0;
             background-color: #f8f9fa;
         }
-        .form-container {
+        .details-container {
             margin-top: 50px;
             padding: 30px;
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .form-title {
+        .details-title {
             margin-bottom: 20px;
-        }
-        .btn-custom {
-            width: 100px;
-            margin: 5px;
         }
         .home-link {
             margin-top: 20px;
             display: block;
             text-align: center;
         }
-        .table-container {
-            margin-top: 50px;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8 table-container text-center">
-                <h1 class="text-center"><u><i>All Airports</i></u></h1>
+            <div class="col-md-8 details-container text-center">
+                <h1 class="details-title"><i>Flight Details</i></h1>
                 <table class="table table-bordered">
-                    <thead class="thead-dark">
+                    <thead>
                         <tr>
-                            <th>Airport Code</th>
-                            <th>Airport Location</th>
-                            <th>Enquire</th>
+                            <th>Flight Number</th>
+                            <th>Airlines Name</th>
+                            <th>Route Id</th>
+                            <th>Departure</th>
+                            <th>Arrival</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${airportList}" var="airport">
+                        <c:forEach var="flight" items="${flightList}">
                             <tr>
-                                <td>${airport.airportCode}</td>
-                                <td>${airport.airportLocation}</td>
-                                <td><a href="/airport/${airport.airportCode}" class="btn btn-info">Enquire</a></td>
-                                
+                                <td>${flight.flightNumber}</td>
+                                <td>${flight.carrierName}</td>
+                                <td>${flight.routeId}</td>
+                                <td>${flight.departure}</td>
+                                <td>${flight.arrival}</td>
                             </tr>
                         </c:forEach>
                     </tbody>
                 </table>
-                <a href="index" class="home-link btn btn-primary">Back to Home</a>
+                <a href="/airports" class="home-link btn btn-primary">Back to Home</a>
             </div>
         </div>
     </div>

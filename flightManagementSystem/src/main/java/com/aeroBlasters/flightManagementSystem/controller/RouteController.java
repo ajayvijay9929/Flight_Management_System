@@ -98,7 +98,7 @@ public class RouteController {
 		return mv;
 	}
 	
-/*	@GetMapping("/searchflight")
+	@GetMapping("/searchflight")
 	public ModelAndView showRouteSelectPage() {
 		List<Airport> airportList = airportDao.showAllAirports();
 		ModelAndView mv = new ModelAndView("routeSelectPage");
@@ -106,6 +106,34 @@ public class RouteController {
 		return mv;
 	}
 	
+/*	@PostMapping("/searchflight")
+	public ModelAndView showRouteFlightpage(@RequestParam("from_city") String fromCity, @RequestParam("to_city") String toCity) {
+	    System.out.println("From City: " + fromCity);
+	    System.out.println("To City: " + toCity);
+
+	    String fromAirport = airportDao.findAirportCodeByLocation(fromCity).toUpperCase();
+	    //String stg =airport.getAirportLocation().toUpperCase();	
+	    System.out.println("From Airport: " + fromAirport);
+
+	    String toAirport = airportDao.findAirportCodeByLocation(toCity).toUpperCase();
+	    System.out.println("To Airport: " + toAirport);
+
+
+
+	    if (fromAirport.equalsIgnoreCase(toAirport))
+	        throw new RouteException("Source and destination airports cannot be the same.");
+
+	    Route route = routeDao.findRouteBySourceAndDestination(fromAirport, toAirport);
+	    List<Flight> flightList = flightDao.findFlightsByRouteId(route.getRouteId());
+	    ModelAndView mv = new ModelAndView("routeFlightShowPage");
+	    mv.addObject("flightList", flightList);
+	    mv.addObject("fromAirport", fromCity);
+	    mv.addObject("toAirport", toCity);
+	    mv.addObject("fair", route.getFair());
+	    return mv;
+	}
+*/
+
 	@PostMapping("/searchflight")
 	public ModelAndView showRouteFlightpage(@RequestParam("from_city") String fromCity,@RequestParam("to_city") String toCity) {
 		String fromAirport = airportDao.findAirportCodeByLocation(fromCity);
@@ -120,7 +148,7 @@ public class RouteController {
 		mv.addObject("toAirport",toCity);
 		mv.addObject("fair",route.getFair());
 		return mv;
-	}*/
+	}
 	
 	@ExceptionHandler(value = RouteException.class)
 	public ModelAndView handlingRouteException(RouteException exception) {

@@ -65,7 +65,7 @@ public class AirportController {
 	@GetMapping("/airport/{id}")
 	public ModelAndView showSingleAirportPage(@PathVariable("id") String id) {
 		Airport airport=airportDao.findAirportById(id);
-		ModelAndView mv=new ModelAndView("airportShowPage");
+		ModelAndView mv=new ModelAndView("airportDisplay");
 		mv.addObject("airport",airport);
 		return mv;
 	}
