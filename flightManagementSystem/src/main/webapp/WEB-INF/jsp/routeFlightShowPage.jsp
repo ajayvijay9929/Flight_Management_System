@@ -59,6 +59,8 @@
                                 <td>${flight.routeId}</td>
                                 <td>${flight.departure}</td>
                                 <td>${flight.arrival}</td>
+                                <td><a href="/flight/${flight.flightNumber}" class="btn btn-info">Book Ticket</a></td>
+                                
                             </tr>
                         </c:forEach>
                     </tbody>
